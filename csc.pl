@@ -142,12 +142,12 @@ if ( $domain ) {
 	verboseMsg("Using '".$domain."' domain"); 
 } else {
 	debugMsg("No domain given. Trying to guess host domain");
-	if ( defined(hostdomain()) ){
-		$domain=hostdomain();
+	if ( hostdomain ne "" ){
+		$domain=hostdomain;
 		debugMsg("Found hostdomain. Trying");
 		verboseMsg("Using host's own '".$domain."' domain");
 	} else {
-		print "ERROR: Missing domain\n";
+		print "ERROR: Missing domain. No domain to test\n";
 		exit 1;
 	}
 }
