@@ -60,6 +60,14 @@ sub verboseMsg{
 	}
 }
 
+#
+# Sub-routine for printing progress messages
+#
+sub progressMsg{
+	print $_[0]."\r";
+	$|=1;
+}
+
 
 #
 # Command line options
@@ -170,8 +178,12 @@ my $table = Text::Table -> new (
 # Go through SRV list, get SRV record and test if open
 #
 my $tcpOpen;
+my $totalRecords=scalar @srvRecords;
+my $i=0;
 foreach my $srv (@srvRecords) {
 	debugMsg("SRV record: ".$srv);
+	$i++;
+	progressMsg("Retrieving SRV records: ".int(($i/$totalRecords)*100)."%");
 	my $res   = Net::DNS::Resolver->new;
 	my $reply = $res->query($srv.".".$domain,"SRV");
 	if ($reply) {
