@@ -19,20 +19,25 @@
 #
 # ** Don't forget to install Net::DNS and Text::Table modules in Perl **
 # 
-# Version 0.3 - 8.Apr.2015
+
 #
 # Change log:
 # Version 0.1 - Initial version
 # Version 0.2 - Cleanup, bug fixes
 # Version 0.3 - Added additional Lync SRV records
+# Version 1.0 - First release. Added version information. Added progress information. Cleanup
 #
 # Command line switches:
 #  -d    	Enable debug mode
-#  -v    	Enable verbose mode. If absent, will only show active records
 #  -h    	Help
 #  -s srv	Test specific SRV record
-#
+#  -v    	Enable verbose mode. If absent, will only show active records
+#  -V    	Print version information
 
+
+use constant version     => "1.0 - 9.Apr.2015";
+use constant programName => "collaboration SRV check - csc";
+use constant developer   => "Manuel Azevedo";
 use strict;
 use Getopt::Std;
 use IO::Socket;
@@ -86,10 +91,23 @@ if ( $Options{h} ) {
 	print $0." [-options] [domain]\n\n";
 	print "where options are:\n";
 	print " -d     Enable debug mode\n";
-	print " -v     Enable verbose mode. It will also list SRV records not found in DNS.\n";
 	print " -h     This help text\n";
-	print " -s srv Test a specific SRV record\n\n";
+	print " -s srv Test a specific SRV record\n";
+	print " -v     Enable verbose mode. It will also list SRV records not found in DNS.\n";
+	print " -V     Version information\n\n";
 	print "If domain is absent, will try to use the host's domain\n\n";
+	exit 0;
+}
+
+#
+# Print version information.
+# Exit without error
+#
+if ( $Options{V} ){
+	print "\n";
+	print "Application : ".programName."\n";
+	print "Version     : ".version."\n";
+	print "Copyright   : ".developer."\n\n";
 	exit 0;
 }
 
