@@ -19,13 +19,22 @@
 #
 # ** Don't forget to install Net::DNS and Text::Table modules in Perl **
 # 
+# SRV sources:
+# http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/jabber/iPad/9_x/JABP_BK_J3C828CB_00_jabber-for-ipad-admin_chapter_01000.html
+# http://wiki.xmpp.org/web/SRV_Records
+# http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/jabber/10_5/CJAB_BK_D6497E98_00_deployment-installation-guide-ciscojabber.pdf
+# http://www.cisco.com/c/en/us/td/docs/solutions/CVD/Collaboration/enterprise/collbcvd/edge.html
+# http://www.cisco.com/c/dam/en/us/td/docs/telepresence/infrastructure/vcs/config_guide/X8-1/Cisco-VCS-Basic-Configuration-Control-with-Expressway-Deployment-Guide-X8-1.pdf
+# https://technet.microsoft.com/en-us/library/bb663700%28v=office.12%29.aspx
+# http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cups/8_0/english/integration_notes/Federation/Federation/CUPConfig_chapter.pdf
 
 #
 # Change log:
 # Version 0.1 - Initial version
-# Version 0.2 - Cleanup, bug fixes
+# Version 0.2 - Clean-up, bug fixes
 # Version 0.3 - Added additional Lync SRV records
-# Version 1.0 - First release. Added version information. Added progress information. Cleanup
+# Version 1.0 - First release. Added version information. Added progress information. Clean-up
+# Version 1.1 - Added additional SRV records. Added SRV records descriptions as comments.
 #
 # Command line switches:
 #  -d    	Enable debug mode
@@ -35,7 +44,7 @@
 #  -V    	Print version information
 
 
-use constant version     => "1.0 - 9.Apr.2015";
+use constant version     => "1.1 - 9.Apr.2015";
 use constant programName => "collaboration SRV check - csc";
 use constant developer   => "Manuel Azevedo";
 use strict;
@@ -140,20 +149,36 @@ if ( $Options{s} ) {
 	debugMsg("Generic SRV record search");
 	verboseMsg("Using the default Cisco SRV records"); 
 	@srvRecords = ( 
-			"_sip._tcp",
-			"_sip._udp",
-			"_sips._tcp",
-			"_sips._tls",
-			"_sip._tls",
-			"_h323cs._tcp",
-			"_h323ls._udp",
-			"_h323rs._udp",
-			"_cisco-uds._tcp",
-			"_cuplogin._tcp",
-			"_collab-edge._tls",
-			"_sipinternaltls._tcp",
-			"_sipinternal._tcp",
-			"_sipfederationtls._tcp"
+			"_sip._tcp",					# SIP TCP
+			"_sip._udp",					# SIP UDP
+			"_sips._tcp",					# Secure SIP TCP
+			"_sips._tls",					# Secure SIP TLS
+			"_sip._tls",					# SIP TLS
+			"_h323cs._tcp",					# H.323 Call signaling
+			"_h323ls._udp",					# H.323 Location service
+			"_h323rs._udp",					# H.323 Registration service
+			"_cisco-uds._tcp",				# Cisco Unified Communications Manager
+			"_cuplogin._tcp",				# Cisco Unified Presence
+			"_collab-edge._tls",			# Cisco VCS Expressway-E
+			"_sipinternaltls._tcp",			# Microsoft Lync SIP TLS for internal registrations
+			"_sipinternal._tcp",			# Microsoft Lync SIP for internal registrations
+			"_sipfederationtls._tcp",		# Cisco and Lync SIP TLS federation
+			"_xmpp-client._tcp",			# XMPP, Cisco WebEx Messenger
+			"_xmpp-server._tcp",			# XMPP
+			"_cisco-phone-tftp._tcp",		# Cisco Unified Communications Manager TFTP
+			"_cisco-phone-http._tcp ",		# Cisco Unified Communications Manager CCMIP
+			"_sip._tcp.internal",			# Cisco TelePresence Video Communication Server (Internal)
+			"_sip._tcp.external",			# Cisco TelePresence Video Communication Server (External)
+			"_ciscowtp._tcp",				# Cisco Jabber Video for TelePresence
+			"_ciscowtp._tcp",				# Cisco WebEx TelePresence
+			"_turn._tcp",					# TURN TCP
+			"_turn._udp",					# TURN UDP
+			"_turns._tcp",					# TURNS TCP
+			"_stun._tcp",					# STUN TCP
+			"_stun._udp",					# STUN UDP
+			"_stuns._tcp",					# STUNS TCP
+			"_gc._msdcs._tcp",				# Active Directory Global Catalog
+			"_ldap._msdcs._tcp",			# Active Directory LDAP Directories
 	);
 }
 
