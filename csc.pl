@@ -27,6 +27,7 @@
 # http://www.cisco.com/c/dam/en/us/td/docs/telepresence/infrastructure/vcs/config_guide/X8-1/Cisco-VCS-Basic-Configuration-Control-with-Expressway-Deployment-Guide-X8-1.pdf
 # https://technet.microsoft.com/en-us/library/bb663700%28v=office.12%29.aspx
 # http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/cups/8_0/english/integration_notes/Federation/Federation/CUPConfig_chapter.pdf
+# http://www.cisco.com/c/en/us/td/docs/voice_ip_comm/jabber/iPad/9_x/JABP_BK_J3C828CB_00_jabber-for-ipad-admin_chapter_01000.html
 
 #
 # Change log:
