@@ -2,7 +2,7 @@
 # 
 #
 # collaboration SRV check - csc
-# Copyright (C) 2015 Manuel Azevedo
+# Copyright (C) 2015-2018 Manuel Azevedo
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@
 # Version 0.3 - Added additional Lync SRV records
 # Version 1.0 - First release. Added version information. Added progress information. Clean-up
 # Version 1.1 - Added additional SRV records. Added SRV records descriptions as comments.
+# Version 1.2 - Added Cisco Spark mtls SRV record
 #
 # Command line switches:
 #  -d    	Enable debug mode
@@ -45,7 +46,7 @@
 #  -V    	Print version information
 
 
-use constant version     => "1.1 - 9.Apr.2015";
+use constant version     => "1.2 - 26.Mar.2018";
 use constant programName => "collaboration SRV check - csc";
 use constant developer   => "Manuel Azevedo";
 use strict;
@@ -180,6 +181,7 @@ if ( $Options{s} ) {
 			"_stuns._tcp",					# STUNS TCP
 			"_gc._msdcs._tcp",				# Active Directory Global Catalog
 			"_ldap._msdcs._tcp",			# Active Directory LDAP Directories
+			"_sips._tcp.mtls",                      # Cisco Spark Hybrid
 	);
 }
 
